@@ -24,9 +24,8 @@ ENTITY transmitter IS
 END transmitter;
 --------------------------------------------------------------------
 ARCHITECTURE moore OF transmitter IS
-    TYPE State_t IS (idle, start, transmit);
+    TYPE State_t IS (idle, start, t0, t1, t2, t3, t4, t5, t6, t7);
     SIGNAL currentS, nextS: State_t;
-    SIGNAL cntr           : INTEGER;
 BEGIN
     -------- Lower Section --------
     seq: PROCESS (nreset, clk)
@@ -38,7 +37,7 @@ BEGIN
         END IF;
     END PROCESS seq;
     -------- Upper Section --------
-    comb: PROCESS (start_in, data_in, currentS)
+    comb: PROCESS (start_in, currentS)
     BEGIN
         stateChange: CASE currentS IS
             WHEN idle =>
@@ -50,21 +49,67 @@ BEGIN
                 END IF;
             WHEN start =>
                 s_out <= '0';
-                cntr  <= 0;
+                --cntr  <= 0;
                 IF start_in = '1' THEN
                     nextS <= start;
                 ELSE
-                    nextS <= transmit;
+                    nextS <= t0;
                 END IF;
-            WHEN transmit =>
-                s_out <= data_in(cntr);
-                cntr <= cntr + 1;
+            WHEN t0 =>
+                s_out <= data_in(0);
                 IF start_in = '1' THEN
                     nextS <= start;
-                ELSIF cntr = 8 THEN
-                    nextS <= idle;
                 ELSE
-                    nextS <= transmit;
+                    nextS <= t1;
+                END IF;
+            WHEN t1 =>
+                s_out <= data_in(1);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t2;
+                END IF;
+            WHEN t2 =>
+                s_out <= data_in(2);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t3;
+                END IF;
+            WHEN t3 =>
+                s_out <= data_in(3);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t4;
+                END IF;
+            WHEN t4 =>
+                s_out <= data_in(4);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t5;
+                END IF;
+            WHEN t5 =>
+                s_out <= data_in(5);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t6;
+                END IF;
+            WHEN t6 =>
+                s_out <= data_in(6);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= t7;
+                END IF;
+            WHEN t7 =>
+                s_out <= data_in(7);
+                IF start_in = '1' THEN
+                    nextS <= start;
+                ELSE
+                    nextS <= idle;
                 END IF;
         END CASE stateChange;
     END PROCESS comb;
