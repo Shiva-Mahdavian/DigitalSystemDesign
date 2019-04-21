@@ -16,7 +16,7 @@ USE ieee.std_logic_1164.ALL;
 ENTITY transmitter IS
     PORT(
         start_in : IN  std_logic;
-        data_in  : IN  std_logic_vector(8 DOWNTO 0);
+        data_in  : IN  std_logic_vector(7 DOWNTO 0);
         clk      : IN  std_logic;
         nreset   : IN  std_logic;
         s_out    : OUT std_logic
