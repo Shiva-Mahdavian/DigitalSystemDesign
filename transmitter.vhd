@@ -28,7 +28,7 @@ ARCHITECTURE moore OF transmitter IS
     SIGNAL currentS, nextS: State_t;
     SIGNAL cntr           : INTEGER;
 BEGIN
-    --------- Lower Section ---------
+    -------- Lower Section --------
     seq: PROCESS (nreset, clk)
     BEGIN
         IF nreset = '0' THEN
@@ -37,7 +37,7 @@ BEGIN
             currentS <= nextS;
         END IF;
     END PROCESS seq;
-    --------- Upper Section ---------
+    -------- Upper Section --------
     comb: PROCESS (start_in, data_in, currentS)
     BEGIN
         stateChange: CASE currentS IS
