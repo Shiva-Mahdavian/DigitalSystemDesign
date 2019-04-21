@@ -42,7 +42,7 @@ BEGIN
     BEGIN
         stateChange: CASE currentS IS
             WHEN idle =>
-                s_out <= 'x';
+                s_out <= 'X';
                 IF start_in = '1' THEN
                     nextS <= start;
                 ELSE
@@ -58,7 +58,7 @@ BEGIN
                 END IF;
             WHEN transmit =>
                 s_out <= data_in(cntr);
-                cntr = cntr + 1;
+                cntr <= cntr + 1;
                 IF start_in = '1' THEN
                     nextS <= start;
                 ELSIF cntr = 8 THEN
