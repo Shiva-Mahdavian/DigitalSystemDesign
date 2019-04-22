@@ -75,11 +75,11 @@ BEGIN
         leftI  <= '0';    WAIT FOR 10 ns;
         leftI  <= '1';    WAIT FOR 10 ns;
         rightI <= '0';
-        leftI  <= '0';    WAIT FOR 10 ns;
-        rightI <= '1';
         leftI  <= '1';    WAIT FOR 10 ns;
-        rightI <= '0';
+        rightI <= '1';
         leftI  <= '0';    WAIT FOR 10 ns;
+        rightI <= '0';
+        leftI  <= '1';    WAIT FOR 10 ns;
         rightI <= '1';
         leftI  <= '1';    WAIT FOR 10 ns;
         rightI <= '0';
