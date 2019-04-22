@@ -24,7 +24,7 @@ ENTITY receiver IS
 END receiver;
 -------------------------------------------------------------------
 ARCHITECTURE moore OF receiver IS
-    TYPE State_t IS  (idle, t0, t1, t2, t3, t4, t5, t6, t7);
+    TYPE State_t IS  (idle, start, t0, t1, t2, t3, t4, t5, t6, t7);
     SIGNAL currentS, nextS : State_t;
 BEGIN
     -------- Lower Section: --------
@@ -44,41 +44,44 @@ BEGIN
                 strobe <= '0';
                 data_out <= (OTHERS => 'X');
                 IF rx = '0' THEN
-                    nextS <= t0;
+                    nextS <= start;
                 ELSE
                     nextS <= idle;
                 END IF;
-            WHEN t0 =>
+            WHEN start =>
                 strobe <= '0';
                 data_out(0) <= rx;
+                nextS <= t0;
+            WHEN t0 =>
+                strobe <= '0';
+                data_out(1) <= rx;
                 nextS <= t1;
             WHEN t1 =>
                 strobe <= '0';
-                data_out(1) <= rx;
+                data_out(2) <= rx;
                 nextS <= t2;
             WHEN t2 =>
                 strobe <= '0';
-                data_out(2) <= rx;
+                data_out(3) <= rx;
                 nextS <= t3;
             WHEN t3 =>
                 strobe <= '0';
-                data_out(3) <= rx;
+                data_out(4) <= rx;
                 nextS <= t4;
             WHEN t4 =>
                 strobe <= '0';
-                data_out(4) <= rx;
+                data_out(5) <= rx;
                 nextS <= t5;
             WHEN t5 =>
                 strobe <= '0';
-                data_out(5) <= rx;
+                data_out(6) <= rx;
                 nextS <= t6;
             WHEN t6 =>
                 strobe <= '0';
-                data_out(6) <= rx;
+                data_out(7) <= rx;
                 nextS <= t7;
             WHEN t7 =>
                 strobe <= '1';
-                data_out(7) <= rx;
                 nextS <= idle;
         END CASE stateChange;
     END PROCESS comb;
