@@ -8,7 +8,7 @@
 -------------------------------------------------------------------
 -- Description: Parallel to Serial transmitter
 -------------------------------------------------------------------
---$LOG$:
+--$LOG$: data_in in comb PROCESS sensitivity list?
 -------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -41,7 +41,7 @@ BEGIN
     BEGIN
         stateChange: CASE currentS IS
             WHEN idle =>
-                s_out <= 'X';
+                s_out <= '1';
                 IF start_in = '1' THEN
                     nextS <= start;
                 ELSE
@@ -49,7 +49,6 @@ BEGIN
                 END IF;
             WHEN start =>
                 s_out <= '0';
-                --cntr  <= 0;
                 IF start_in = '1' THEN
                     nextS <= start;
                 ELSE
