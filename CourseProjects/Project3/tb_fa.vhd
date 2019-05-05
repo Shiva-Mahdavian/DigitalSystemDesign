@@ -1,7 +1,7 @@
 ------------------------------------------------------------------
 -- Digital System Design
 -- Project: Carry-skip Adder design (project 3)
--- Date: 21-Apr-2019
+-- Date: 29-Apr-2019
 -- Authur: Shivasadat Mahdavian
 -- File: tb_fa.vhd
 -- Design: Data Flow model
@@ -20,8 +20,8 @@ ARCHITECTURE testbench OF tb_fa IS
     -------- DUT Declaration: ---------
     COMPONENT fa IS
         PORT(
-            a, b, cin  : IN  std_logic;
-            s, p, cout : OUT std_logic
+            a_in, b_in, c_in  : IN  std_logic;
+            s_out, p_out, c_out : OUT std_logic
             );
     END COMPONENT;
     -------- Signal Declaration: --------
@@ -30,12 +30,12 @@ BEGIN
     --------- DUT instantiation: --------
     dut: fa
      PORT MAP (
-        a    => a,
-        b    => b,
-        cin  => cin,
-        s    => s,
-        p    => p,
-        cout => cout
+        a_in  => a,
+        b_in  => b,
+        c_in  => cin,
+        s_out => s,
+        p_out => p,
+        c_out => cout
         );
     -------- Stimuli instantiation: --------
     a   <= '0',
