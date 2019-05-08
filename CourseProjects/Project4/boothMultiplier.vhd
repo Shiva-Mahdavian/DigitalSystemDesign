@@ -16,8 +16,8 @@ ENTITY boothMultiplier IS
 		multiplier, multiplicand : IN  std_logic_vector(N-1 DOWNTO 0);
 		result					 : OUT std_logic_vector(2*N-1 DOWNTO 0)
 		);
-	TYPE ARR2d IS ARRAY (0 TO N/2) OF std_logic_vector(N DOWNTO 0);
-	TYPE BARR2d IS ARRAY  (0 TO N/2) OF std_logic_vector(N+1 DOWNTO 0);
+	TYPE ARR2d IS ARRAY (0 TO N/2-1) OF std_logic_vector(N DOWNTO 0);
+	--TYPE BARR2d IS ARRAY  (0 TO N/2) OF std_logic_vector(N+1 DOWNTO 0);
 END boothMultiplier;
 -----------------------------------------------------------------
 ARCHITECTURE concurrent OF boothMultiplier IS
@@ -60,7 +60,7 @@ BEGIN
 	-------- Add leading 0 to multiplier ---------
 	m <= multiplier & '0';
 	-------- SignExtend multiplicand: --------
-	extMultiplicand <= multiplicand(N) & multiplicand;
+	extMultiplicand <= multiplicand(N-1) & multiplicand;
 	-------- partialProductGen instantiation: ---------
 	ppgen: partialProductGen
 	 GENERIC MAP(N)
@@ -71,7 +71,7 @@ BEGIN
 		m2_l_out => twicemulMinus
 		);
 	-------- boothDecoder instantiation: ---------
-	decoderGeneration: FOR i IN 0 TO N/2 GENERATE
+	decoderGeneration: FOR i IN 0 TO N/2-1 GENERATE
 		decoder: boothDecoder
 		 GENERIC MAP(N)
 		 PORT MAP (
@@ -87,8 +87,8 @@ BEGIN
 	END GENERATE decoderGeneration;
 	-------- adder and output mapping: --------
 	layerRes(0) <= decodersRes(0);
-	adderGeneration: FOR i IN 0 TO N/2-1 GENERATE
-		result(2*i+1 DOWNTO 2*i) <= layerRes(i);
+	adderGeneration: FOR i IN 0 TO N/2-2 GENERATE
+		result(2*i+1 DOWNTO 2*i) <= layerRes(i)(1 DOWNTO 0);
 		a: adder
 		 GENERIC MAP(N)
 		 PORT MAP (
@@ -97,6 +97,7 @@ BEGIN
 			res  => layerRes(i+1)
 			);
 	END GENERATE adderGeneration;
-	result(2*N-2 DOWNTO N-2) <= layerRes(N/2);
+	result(2*N-2 DOWNTO N-2) <= layerRes(N/2-1);
+	result(2*N-1) <= layerRes(N/2-1)(N)
 END concurrent;
 --------------------------------------------------------------------
