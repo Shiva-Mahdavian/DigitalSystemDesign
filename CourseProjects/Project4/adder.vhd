@@ -11,28 +11,28 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 -----------------------------------------------------------------
 ENTITY adder IS
-    GENERIC(N : integer := 64);
+    GENERIC(N : integer := 65);
     PORT (
-        a_in : IN  std_logic_vector(N-2 DOWNTO 0);
-        b_in : IN  std_logic_vector(N DOWNTO 0);
-        res  : OUT std_logic_vector(N DOWNTO 0)
+        a_in : IN  std_logic_vector(N-3 DOWNTO 0);
+        b_in : IN  std_logic_vector(N-1 DOWNTO 0);
+        res  : OUT std_logic_vector(N-1 DOWNTO 0)
         );
 END adder;
 ------------------------------------------------------------------
 ARCHITECTURE arch OF adder IS
     -------- Component Declaration --------
     COMPONENT rippleCarryAdder IS
-        GENERIC(N : integer := 64);
+        GENERIC(N : integer := 65);
         PORT(
-            a_in, b_in : IN  std_logic_vector(N DOWNTO 0);
-            res		   : OUT std_logic_vector(N+1 DOWNTO 0)
+            a_in, b_in : IN  std_logic_vector(N-1 DOWNTO 0);
+            res		   : OUT std_logic_vector(N DOWNTO 0)
             );
     END COMPONENT;
     -------- Signal Declaration: ---------
-    SIGNAL ext : std_logic_vector(N DOWNTO 0);
-    SIGNAL rippleRes :  std_logic_vector(N+1 DOWNTO 0);
+    SIGNAL ext : std_logic_vector(N-1 DOWNTO 0);
+    SIGNAL rippleRes :  std_logic_vector(N DOWNTO 0);
 BEGIN
-    ext <= a_in(N-2) & a_in(N-2) & a_in;
+    ext <= a_in(N-3) & a_in(N-3) & a_in;
     ripple: rippleCarryAdder
      GENERIC MAP(N)
      PORT MAP(
@@ -40,5 +40,5 @@ BEGIN
         b_in => b_in,
         res => rippleRes
         );
-    res <= rippleRes(N DOWNTO 0);
+    res <= rippleRes(N-1 DOWNTO 0);
 END arch;
