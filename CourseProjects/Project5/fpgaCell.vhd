@@ -40,10 +40,10 @@ ARCHITECTURE structural OF fpgaCell IS
     -------- Configuarable logic Block Component Declaration: --------
     COMPONENT configurableLogicBlock IS
         PORT(
-            prog_in, prog_en : IN  std_logic;
-            sel_in           : IN  std_logic_vector(1 DOWNTO 0);
-            prog_clk, clk    : IN  std_logic;
-            prog_out, clb_out  : OUT std_logic
+            prog_in, prog_en  : IN  std_logic;
+            sel_in            : IN  std_logic_vector(1 DOWNTO 0);
+            prog_clk, clk     : IN  std_logic;
+            prog_out, clb_out : OUT std_logic
             );
     END COMPONENT;
     -------- Configuarable logic Block Component Declaration: --------

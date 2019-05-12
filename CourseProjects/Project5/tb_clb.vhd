@@ -17,10 +17,10 @@ ARCHITECTURE test OF tb_clb IS
     --------- DUT Declaration: --------
     COMPONENT configurableLogicBlock IS
         PORT(
-            prog_in, prog_en : IN  std_logic;
-            sel_in           : IN  std_logic_vector(1 DOWNTO 0);
-            prog_clk, clk    : IN  std_logic;
-            prog_out, clb_out  : OUT std_logic
+            prog_in, prog_en  : IN  std_logic;
+            sel_in            : IN  std_logic_vector(1 DOWNTO 0);
+            prog_clk, clk     : IN  std_logic;
+            prog_out, clb_out : OUT std_logic
             );
     END COMPONENT;
     -------- Signal Declaration: --------
@@ -32,12 +32,12 @@ BEGIN
     -------- DUT Instantiation: --------
     dut: configurableLogicBlock
      PORT MAP(
-        prog_in => prog_in,
-        prog_en => en,
-        sel_in => sel,
+        prog_in  => prog_in,
+        prog_en  => en,
+        sel_in   => sel,
         prog_clk => clk,
-        clk => clk,
-        clb_out => res,
+        clk      => clk,
+        clb_out  => res,
         prog_out => OPEN
         );
     -------- clk Generation: --------

@@ -65,7 +65,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(2),
         sel(1)  => regWire(1),
-        m_out => l2_out
+        m_out   => l2_out
         );
     muxL4: mux4
      PORT MAP(
@@ -75,7 +75,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(4),
         sel(1)  => regWire(3),
-        m_out => l4_out
+        m_out   => l4_out
         );
     muxU1: mux4
      PORT MAP(
@@ -85,7 +85,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(6),
         sel(1)  => regWire(5),
-        m_out => u1_out
+        m_out   => u1_out
         );
     muxU3: mux4
      PORT MAP(
@@ -95,7 +95,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(8),
         sel(1)  => regWire(7),
-        m_out => u3_out
+        m_out   => u3_out
         );
     muxR4: mux4
      PORT MAP(
@@ -105,7 +105,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(10),
         sel(1)  => regWire(9),
-        m_out => r4_out
+        m_out   => r4_out
         );
     muxR2: mux4
      PORT MAP(
@@ -115,7 +115,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(12),
         sel(1)  => regWire(11),
-        m_out => r2_out
+        m_out   => r2_out
         );
     muxD1: mux4
      PORT MAP(
@@ -125,7 +125,7 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(14),
         sel(1)  => regWire(13),
-        m_out => d1_out
+        m_out   => d1_out
         );
     muxD3: mux4
      PORT MAP(
@@ -135,6 +135,6 @@ BEGIN
         m_in(3) => 'Z',
         sel(0)  => regWire(16),
         sel(1)  => regWire(15),
-        m_out => d3_out
+        m_out   => d3_out
         );
 END structural;

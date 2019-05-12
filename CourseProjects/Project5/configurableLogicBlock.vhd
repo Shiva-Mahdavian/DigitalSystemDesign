@@ -12,10 +12,10 @@ USE ieee.std_logic_1164.ALL;
 -----------------------------------------------------------------
 ENTITY configurableLogicBlock IS
     PORT(
-        prog_in, prog_en : IN  std_logic;
-        sel_in           : IN  std_logic_vector(1 DOWNTO 0);
-        prog_clk, clk    : IN  std_logic;
-        prog_out, clb_out  : OUT std_logic
+        prog_in, prog_en  : IN  std_logic;
+        sel_in            : IN  std_logic_vector(1 DOWNTO 0);
+        prog_clk, clk     : IN  std_logic;
+        prog_out, clb_out : OUT std_logic
         );
 END configurableLogicBlock;
 ----------------------------------------------------------------
@@ -30,7 +30,7 @@ ARCHITECTURE structural OF configurableLogicBlock IS
     -------- Component FF Declaration: --------
     COMPONENT ff IS
         PORT(
-            clk, d_in : IN  std_logic;
+            clk, d_in     : IN  std_logic;
             q             : OUT std_logic
         );
     END COMPONENT;
