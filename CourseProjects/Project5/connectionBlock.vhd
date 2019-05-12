@@ -12,12 +12,12 @@ USE ieee.std_logic_1164.ALL;
 -----------------------------------------------------------------
 ENTITY connectionBlock IS
     PORT(
-        r1_in, r2_in      : IN std_logic;
-        l1_in, l2_in      : IN std_logic;
+        r2_in, r4_in      : IN std_logic;
+        r1_out, r3_out    : OUT std_logic;
+        l1_in, l3_in      : IN std_logic;
+        l4_out, l2_out    : OUT std_logic;
         prog_in, prog_en  : IN std_logic;
         prog_clk, clb_res : IN  std_logic;
-        r1_out, r2_out    : OUT std_logic;
-        l1_out, l2_out    : OUT std_logic;
         prog_out          : OUT std_logic;
         clb_clk_out       : OUT std_logic;
         clb_sel_out       : OUT std_logic_vector(1 DOWNTO 0)
@@ -72,10 +72,10 @@ BEGIN
     mux4Gen: FOR i IN 0 TO 2 GENERATE
         mux_4: mux4
          PORT MAP(
-             m_in(0) => r1_in,
+             m_in(0) => r2_in,
              m_in(1) => l1_in,
-             m_in(2) => r2_in,
-             m_in(3) => l2_in,
+             m_in(2) => r4_in,
+             m_in(3) => l3_in,
              sel(0)  => regWire(2*i+1),
              sel(1)  => regWire(2*i+2),
              m_out   => mux4Res(i)
@@ -96,9 +96,9 @@ BEGIN
             );
     END GENERATE mux2Gen;
     --------
-    mux2in <= r1_in & l1_in & r2_in & l2_in;
-    l1_out <= mux2Res(0);
+    mux2in <= r2_in & l1_in & r4_in & l3_in;
+    l2_out <= mux2Res(0);
     r1_out <= mux2Res(1);
-    l2_out <= mux2Res(2);
-    r2_out <= mux2Res(3);
+    l4_out <= mux2Res(2);
+    r3_out <= mux2Res(3);
 END structural;

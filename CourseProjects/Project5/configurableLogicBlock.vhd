@@ -3,23 +3,23 @@
 -- Project: FPGA Cell (project5)
 -- Date: 8 May 2019
 -- Author: Shivasadat Mahdavian
--- File: clb.vhd
+-- File: configurableLogicBlock.vhd
 -----------------------------------------------------------------
 -- $LOG$:
 -----------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 -----------------------------------------------------------------
-ENTITY clb IS
+ENTITY configurableLogicBlock IS
     PORT(
         prog_in, prog_en : IN  std_logic;
         sel_in           : IN  std_logic_vector(1 DOWNTO 0);
         prog_clk, clk    : IN  std_logic;
-        prog_out, z_out  : OUT std_logic
+        prog_out, clb_out  : OUT std_logic
         );
-END clb;
+END configurableLogicBlock;
 ----------------------------------------------------------------
-ARCHITECTURE structural OF clb IS
+ARCHITECTURE structural OF configurableLogicBlock IS
     -------- Component FF with enable Declaration: --------
     COMPONENT ff_e IS
         PORT(
@@ -97,6 +97,6 @@ BEGIN
         m_in(0) => regOut,
         m_in(1) => mux1res,
         sel     => regWire(5),
-        m_out   => z_out
+        m_out   => clb_out
         );
 END structural;
