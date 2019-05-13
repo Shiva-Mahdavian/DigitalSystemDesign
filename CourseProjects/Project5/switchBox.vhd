@@ -47,6 +47,7 @@ ARCHITECTURE structural OF switchBox IS
 BEGIN
     -------- ShiftRegister Instantiation: --------
     regWire(0) <= prog_in;
+    prog_out   <= regWire(16);
     regGen: FOR i IN 0 TO 15 GENERATE
         reg: ff_e
          PORT MAP(
