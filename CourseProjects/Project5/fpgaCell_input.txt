@@ -1,0 +1,25 @@
+---- computing sum with one fpga cell
+---- first input : r1_in
+---- second input: l1_in
+---- output      : both r2_out, l2_out
+# en
+0
+1
+# config bits : prog in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    1   1   1   1   1   0   1   1   1   1   1   1   1   0   1   1
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    1   0   0   1   1   1   0   0   1   1
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# en
+0
+# inputs:
+#r1_in l1_in
+    0   0
+    0   1
+    1   0
+    1   1
