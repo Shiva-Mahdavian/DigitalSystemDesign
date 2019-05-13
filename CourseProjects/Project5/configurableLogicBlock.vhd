@@ -51,7 +51,7 @@ ARCHITECTURE structural OF configurableLogicBlock IS
             );
     END COMPONENT;
     -------- Signal Declaration: --------
-    SIGNAL regWire         : std_logic_vector(5 DOWNTO 0);
+    SIGNAL regWire         : std_logic_vector(0 TO 5);
     SIGNAL mux1res, regOut : std_logic;
 BEGIN
     -------- CLB register Instantiation: --------
