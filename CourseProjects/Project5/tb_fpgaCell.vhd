@@ -36,6 +36,9 @@ ARCHITECTURE test OF tb_fpgaCell IS
     SIGNAL prg_in, prg_en   : std_logic;
     SIGNAL u2, u4, d2, d4   : std_logic;
     SIGNAL l1, l3, r1, r3   : std_logic;
+    SIGNAL progOut1         : std_logic;
+    SIGNAL sum2carry        : std_logic_vector(1 TO 4);
+    SIGNAL carry1, sum1     : std_logic;
     -------- File Declaration: --------
     FILE file_in : text;
 BEGIN
@@ -51,30 +54,55 @@ BEGIN
         clb_clk <= '0'; WAIT FOR clbClkP/2;
         clb_clk <= '1'; WAIT FOR clbClkP/2;
     END PROCESS clb_clock;
-    -------- DUT Instantiation: --------
-    dut: fpgaCell
+    -------- DUT1 Instantiation: --------
+    sumComp: fpgaCell
      PORT MAP (
         prog_clk => prg_clk,
         prog_en  => prg_en,
         prog_in  => prg_in,
-        prog_out => OPEN,
-        u1_out   => OPEN,
-        u3_out   => OPEN,
+        prog_out => progOut1,
+        u1_out   => sum2carry(1),
+        u3_out   => sum2carry(3),
         d1_out   => OPEN,
         d3_out   => OPEN,
-        r2_out   => OPEN,
+        r2_out   => sum1,
         r4_out   => OPEN,
         l2_out   => OPEN,
         l4_out   => OPEN,
-        u2_in    => u2,
-        u4_in    => u4,
-        d2_in    => d2,
-        d4_in    => d4,
+        u2_in    => sum2carry(2),
+        u4_in    => sum2carry(4),
+        d2_in    => 'Z',
+        d4_in    => 'Z',
         l1_in    => l1,
-        l3_in    => l3,
-        r1_in    => r1,
-        r3_in    => r3
+        l3_in    => 'Z',
+        r1_in    => 'Z',
+        r3_in    => 'Z'
      );
+
+     -------- DUT2 Instantiation: --------
+     carryComp: fpgaCell
+      PORT MAP (
+         prog_clk => prg_clk,
+         prog_en  => prg_en,
+         prog_in  => progOut1,
+         prog_out => OPEN,
+         u1_out   => OPEN,
+         u3_out   => OPEN,
+         d1_out   => sum2carry(4),
+         d3_out   => sum2carry(2),
+         r2_out   => OPEN,
+         r4_out   => carry1,
+         l2_out   => OPEN,
+         l4_out   => OPEN,
+         u2_in    => u2,
+         u4_in    => 'Z',
+         d2_in    => sum2carry(3),
+         d4_in    => sum2carry(1),
+         l1_in    => 'Z',
+         l3_in    => 'Z',
+         r1_in    => 'Z',
+         r3_in    => 'Z'
+      );
     -------- Read From file ----------
     PROCESS
         VARIABLE v_line : line;
@@ -84,6 +112,7 @@ BEGIN
         ----  Open file in read mode
         file_open(file_in, "../../fpgaCell_input.txt", read_mode);
         ---- read comment
+        readline(file_in, v_line);
         readline(file_in, v_line);
         readline(file_in, v_line);
         readline(file_in, v_line);
@@ -103,36 +132,72 @@ BEGIN
         readline(file_in, v_line);
         readline(file_in, v_line);
         readline(file_in, v_line);
+        -------- carryComp --------
         ---- read switchBox config bits
         readline(file_in, v_line);
-        bitRead1: FOR i in 0 to 15 LOOP
+        carrySB1: FOR i in 0 to 15 LOOP
             read(v_line, v_tab);
             read(v_line, v_bit);
             prg_in <= v_bit;
             WAIT FOR progClkP;
-        END LOOP bitRead1;
+        END LOOP carrySB1;
         ---- read comment
         readline(file_in, v_line);
         readline(file_in, v_line);
         ---- read connection block config bits
         readline(file_in, v_line);
-        bitRead2: FOR i in 0 to 9 LOOP
+        carryCB1: FOR i in 0 to 9 LOOP
             read(v_line, v_tab);
             read(v_line, v_bit);
             prg_in <= v_bit;
             WAIT FOR progClkP;
-        END LOOP bitRead2;
+        END LOOP carryCB1;
         ---- read comment
         readline(file_in, v_line);
         readline(file_in, v_line);
         ---- read configurabel logic block config bits
         readline(file_in, v_line);
-        bitRead3: FOR i in 0 to 4 LOOP
+        carryCLB1: FOR i in 0 to 4 LOOP
             read(v_line, v_tab);
             read(v_line, v_bit);
             prg_in <= v_bit;
             WAIT FOR progClkP;
-        END LOOP bitRead3;
+        END LOOP carryCLB1;
+        -------- sumComp --------
+        ---- read comment
+        readline(file_in, v_line);
+        readline(file_in, v_line);
+        readline(file_in, v_line);
+        ---- read switchBox config bits
+        readline(file_in, v_line);
+        sumSB1: FOR i in 0 to 15 LOOP
+            read(v_line, v_tab);
+            read(v_line, v_bit);
+            prg_in <= v_bit;
+            WAIT FOR progClkP;
+        END LOOP sumSB1;
+        ---- read comment
+        readline(file_in, v_line);
+        readline(file_in, v_line);
+        ---- read connection block config bits
+        readline(file_in, v_line);
+        sumCB1: FOR i in 0 to 9 LOOP
+            read(v_line, v_tab);
+            read(v_line, v_bit);
+            prg_in <= v_bit;
+            WAIT FOR progClkP;
+        END LOOP sumCB1;
+        ---- read comment
+        readline(file_in, v_line);
+        readline(file_in, v_line);
+        ---- read configurabel logic block config bits
+        readline(file_in, v_line);
+        sumCLB1: FOR i in 0 to 4 LOOP
+            read(v_line, v_tab);
+            read(v_line, v_bit);
+            prg_in <= v_bit;
+            WAIT FOR progClkP;
+        END LOOP sumCLB1;
         ---- read comment
         readline(file_in, v_line);
         ---- read prog en
@@ -147,7 +212,7 @@ BEGIN
             readline(file_in, v_line);
             read(v_line, v_tab);
             read(v_line, v_bit);
-            r1 <= v_bit;
+            u2 <= v_bit;
             read(v_line, v_tab);
             read(v_line, v_bit);
             l1 <= v_bit;
