@@ -72,10 +72,10 @@ BEGIN
     mux4Gen: FOR i IN 0 TO 2 GENERATE
         mux_4: mux4
          PORT MAP(
-             m_in(0) => r2_in,
-             m_in(1) => l1_in,
-             m_in(2) => r4_in,
-             m_in(3) => l3_in,
+             m_in(0) => l1_in,
+             m_in(1) => r2_in,
+             m_in(2) => l3_in,
+             m_in(3) => r4_in,
              sel(0)  => regWire(2*i+1),
              sel(1)  => regWire(2*i+2),
              m_out   => mux4Res(i)
@@ -89,16 +89,16 @@ BEGIN
     mux2Gen: FOR i IN 0 TO 3 GENERATE
         mux_2 : mux2
          PORT MAP(
-            m_in(0) => mux2in(i),
-            m_in(1) => clb_res,
+            m_in(1) => mux2in(i),
+            m_in(0) => clb_res,
             sel     => regWire(i+7),
             m_out   => mux2Res(i)
             );
     END GENERATE mux2Gen;
     --------
-    mux2in <= r2_in & l1_in & r4_in & l3_in;
-    l2_out <= mux2Res(0);
-    r1_out <= mux2Res(1);
-    l4_out <= mux2Res(2);
-    r3_out <= mux2Res(3);
+    mux2in <= l1_in & r2_in & l3_in & r4_in;
+    r1_out <= mux2Res(0);
+    l2_out <= mux2Res(1);
+    r3_out <= mux2Res(2);
+    l4_out <= mux2Res(3);
 END structural;
