@@ -31,6 +31,7 @@ ARCHITECTURE test OF tb_fpgaCell IS
     -------- Constant Declaration: --------
     CONSTANT progClkP : time := 10 ns;
     CONSTANT clbClkP  : time := 60 ns;
+    CONSTANT nCell    : integer := 2;
     -------- Signal Declaration: --------
     SIGNAL prg_clk, clb_clk : std_logic;
     SIGNAL prg_in, prg_en   : std_logic;
@@ -128,76 +129,44 @@ BEGIN
         read(v_line, v_bit);
         prg_en <= v_bit;
         WAIT FOR progClkP;
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        -------- carryComp --------
-        ---- read switchBox config bits
-        readline(file_in, v_line);
-        carrySB1: FOR i in 0 to 15 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP carrySB1;
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        ---- read connection block config bits
-        readline(file_in, v_line);
-        carryCB1: FOR i in 0 to 9 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP carryCB1;
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        ---- read configurabel logic block config bits
-        readline(file_in, v_line);
-        carryCLB1: FOR i in 0 to 4 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP carryCLB1;
-        -------- sumComp --------
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        ---- read switchBox config bits
-        readline(file_in, v_line);
-        sumSB1: FOR i in 0 to 15 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP sumSB1;
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        ---- read connection block config bits
-        readline(file_in, v_line);
-        sumCB1: FOR i in 0 to 9 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP sumCB1;
-        ---- read comment
-        readline(file_in, v_line);
-        readline(file_in, v_line);
-        ---- read configurabel logic block config bits
-        readline(file_in, v_line);
-        sumCLB1: FOR i in 0 to 4 LOOP
-            read(v_line, v_tab);
-            read(v_line, v_bit);
-            prg_in <= v_bit;
-            WAIT FOR progClkP;
-        END LOOP sumCLB1;
+        -------- config bits reading --------
+        conf: FOR j IN 0 TO nCell-1 LOOP
+            ---- read comment
+            readline(file_in, v_line);
+            readline(file_in, v_line);
+            readline(file_in, v_line);
+
+            ---- read switchBox config bits
+            readline(file_in, v_line);
+            sb: FOR i in 0 to 15 LOOP
+                read(v_line, v_tab);
+                read(v_line, v_bit);
+                prg_in <= v_bit;
+                WAIT FOR progClkP;
+            END LOOP sb;
+            ---- read comment
+            readline(file_in, v_line);
+            readline(file_in, v_line);
+            ---- read connection block config bits
+            readline(file_in, v_line);
+            cb: FOR i in 0 to 9 LOOP
+                read(v_line, v_tab);
+                read(v_line, v_bit);
+                prg_in <= v_bit;
+                WAIT FOR progClkP;
+            END LOOP cb;
+            ---- read comment
+            readline(file_in, v_line);
+            readline(file_in, v_line);
+            ---- read configurabel logic block config bits
+            readline(file_in, v_line);
+            clb: FOR i in 0 to 4 LOOP
+                read(v_line, v_tab);
+                read(v_line, v_bit);
+                prg_in <= v_bit;
+                WAIT FOR progClkP;
+            END LOOP clb;
+        END LOOP conf;
         ---- read comment
         readline(file_in, v_line);
         ---- read prog en
