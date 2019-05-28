@@ -2,9 +2,9 @@
 #### Building an FPGA Cell!
 An FPGA Cell consists of three main parts:
 
-1. Configurable Logic Block(CLB)
-2. Connection Block (CB)
-3. Switch Box (SB)
+1. Configurable Logic Block([CLB](./configurableLogicBlock.vhd))
+2. Connection Block ([CB](./connectionBlock.vhd))
+3. Switch Box ([SB](./switchBox.vhd))
 
 ![FPGA Cell][fpgaCell]
 
@@ -22,25 +22,25 @@ For configuring the FPGA Cell this is the bit stream format:
     0   0   0   0   0
 ```
 
-you can check the FPGA Cell test bench which is a half adder made by two FPGA Cell,
-and it's input for a better understanding of configuration.
+you can check the [FPGA Cell test bench](./tb_fpgaCell.vhd) which is a half adder made by two FPGA Cell,
+and it's [input](./fpgaCell_input.txt) for a better understanding of configuration.
 
 Also here is some pictures to help you more about what each of this bits does:
 
-1. Switch Box muxes:
+1. [Switch Box](./switchBox.vhd) muxes:
 
- ![SB muxes][SBMux]
+ <img src="https://github.com/Shiva-Mahdavian/DigitalSystemDesign/blob/master/CourseProjects/readme_Images/sb.jpg" alt="SB muxes" width="300"/>
 
- The selects of muxes shown in order(notice the numbers written in order on each select line) are configurable bits.
+ The selects of muxes shown in order (notice the numbers written on each select line) are configurable bits.
 
-2. Connection Block muxes:
+2. [Connection Block](./connectionBlock.vhd) muxes:
 
  ![CB muxes][CBMux]
 
-  The selects of muxes shown in order(notice the numbers written in order on each select line) are configurable bits.
+  The selects of muxes shown in order(notice the numbers on each select line) are configurable bits.
 
 
- 3. Configurable logic Block:
+ 3. [Configurable logic Block](./configurableLogicBlock.vhd):
 
  ![CLB][clb]
 
@@ -51,8 +51,13 @@ Also here is some pictures to help you more about what each of this bits does:
 #### Building an FPGA by cascading FPGA Cells from the last project.
 I built this [FPGA](./fpga.vhd) by cascading M*N [fpgaCell](./fpgaCell.vhd). The exact amount of M and N are distinguished in the test bench files.
 Two test benches are available:
-+ [2x2 FPGA tested with a XOR b XOR c XOR d](./tb_fpga2x2_xor4.vhd)
-+ [4x4 FPGA tested with a XOR b XOR c XOR d](./tb_fpga4x4_xor4.vhd)
+
++ [2x2 FPGA tested with a XOR b XOR c XOR d](./tb_fpga2x2_xor4.vhd).
+
+   [input file](./xor4_2x2Cell_input.txt)
++ [4x4 FPGA tested with a XOR b XOR c XOR d](./tb_fpga4x4_xor4.vhd).
+
+   [input file](./xor4_4x4Cell_input.txt)
 
 [fpgaCell]:https://github.com/Shiva-Mahdavian/DigitalSystemDesign/blob/master/CourseProjects/readme_Images/fpgaCell.jpg
 [SBMux]:https://github.com/Shiva-Mahdavian/DigitalSystemDesign/blob/master/CourseProjects/readme_Images/sb.jpg
