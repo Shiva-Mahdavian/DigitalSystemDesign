@@ -1,0 +1,187 @@
+---- computing a XOR b XOR c XOR d with a 4x4 FPGA
+---- inputs: l_in = a,b,c,d
+---- output: r0
+# en
+0
+1
+# cell1 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell2 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell3 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell4 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell5 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell6 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell7 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell8 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell9 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell10 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell11 config: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   1   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell12 (c XOR d): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   1   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# cell13 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   1   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell14 dummy: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   1   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell15 (res4 XOR res2): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   1   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# cell16 (a XOR b): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   1   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# en
+0
+# inputs:
+#   a   b   c   d
+#  l7  l6  l5  l4  l3  l2  l1  l0
+    0   0   0   0   0   0   0   0
+    0   0   0   1   0   0   0   0
+    0   0   1   0   0   0   0   0
+    0   0   1   1   0   0   0   0
+    0   1   0   0   0   0   0   0
+    0   1   0   1   0   0   0   0
+    0   1   1   0   0   0   0   0
+    0   1   1   1   0   0   0   0
+    1   0   0   0   0   0   0   0
+    1   0   0   1   0   0   0   0
+    1   0   1   0   0   0   0   0
+    1   0   1   1   0   0   0   0
+    1   1   0   0   0   0   0   0
+    1   1   0   1   0   0   0   0
+    1   1   1   0   0   0   0   0
+    1   1   1   1   0   0   0   0

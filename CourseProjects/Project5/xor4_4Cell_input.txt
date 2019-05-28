@@ -1,0 +1,67 @@
+---- computing a XOR b XOR c XOR d with a 2x2 FPGA
+---- inputs: l_in = a,b,c,d
+---- output: r0
+# en
+0
+1
+# cell1 config: prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   1   0   0   0   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    0   0   0   0   0
+# cell2 (c XOR d): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   1   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# cell3 (res4 XOR res2): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   0   1   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# cell4 (a XOR b): prog_in
+# switch box
+#  d30 d31 d10 d11 r20 r21 r40 r41 u30 u31 u10 u11 l40 l41 l20 l21
+    0   0   0   0   0   0   1   0   0   0   0   0   0   0   0   0
+# connection block
+#  l4s r3s l2s r1s s1c s0c s01 s00 s11 s10
+    0   0   0   0   0   0   1   0   0   0
+# configurable logic block
+#  mux  3   2   1   0
+    1   0   1   1   0
+# en
+0
+# inputs:
+#   a   b   c   d
+#  l0  l1  l2  l3
+    0   0   0   0
+    0   0   0   1
+    0   0   1   0
+    0   0   1   1
+    0   1   0   0
+    0   1   0   1
+    0   1   1   0
+    0   1   1   1
+    1   0   0   0
+    1   0   0   1
+    1   0   1   0
+    1   0   1   1
+    1   1   0   0
+    1   1   0   1
+    1   1   1   0
+    1   1   1   1

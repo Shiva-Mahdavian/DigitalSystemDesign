@@ -1,4 +1,4 @@
----- computing sum with one fpga cell
+---- computing sum and carry with two fpga cell
 ---- first input : u2_in port of carryComp
 ---- second input: l1_in port of sumComp
 ---- output      : r2_out of sumComp
