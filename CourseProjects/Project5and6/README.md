@@ -6,7 +6,12 @@ An FPGA Cell consists of three main parts:
 2. Connection Block (CB)
 3. Switch Box (SB)
 
-![FPGA Cell] (https://github.com/Shiva-Mahdavian/DigitalSystemDesign/tree/master/CourseProjects/readme_Images/fpgaCell.jpg)
+![FPGA Cell][fpgaCell]
+
+
 
 # Project 6
 #### Building an FPGA by cascading FPGA Cells from last project.
+
+
+[fpgaCell]:https://github.com/Shiva-Mahdavian/DigitalSystemDesign/blob/master/CourseProjects/readme_Images/fpgaCell.jpg
