@@ -3,7 +3,7 @@
 -- Project: FPGA (project6)
 -- Date: 22 May 2019
 -- Author: Shivasadat Mahdavian
--- File: tb_fpga4_xor4.vhd
+-- File: tb_fpga2x2_xor4.vhd
 -----------------------------------------------------------------
 -- $LOG$:
 -----------------------------------------------------------------
@@ -12,10 +12,10 @@ USE ieee.std_logic_1164.ALL;
 USE STD.textio.ALL;
 USE ieee.std_logic_textio.ALL;
 -----------------------------------------------------------------
-ENTITY tb_fpga4_xor4 IS
-END tb_fpga4_xor4;
+ENTITY tb_fpga2x2_xor4 IS
+END tb_fpga2x2_xor4;
 -----------------------------------------------------------------
-ARCHITECTURE test OF tb_fpga4_xor4 IS
+ARCHITECTURE test OF tb_fpga2x2_xor4 IS
     -------- DUT Declaration: --------
     COMPONENT fpga IS
         GENERIC(
@@ -82,7 +82,7 @@ BEGIN
         VARIABLE v_bit  : std_logic;
     BEGIN
         -------- Open file in read mode ---------
-        file_open(file_in, "../../xor4_4Cell_input.txt", read_mode);
+        file_open(file_in, "../../xor4_2x2Cell_input.txt", read_mode);
         -------- read comment ---------
         readline(file_in, v_line);
         readline(file_in, v_line);
